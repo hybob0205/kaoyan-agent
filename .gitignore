@@ -17,6 +17,6 @@ data/chroma/*
 data/*.db*
 /*.pdf
 /releases/*
-!/releases/youyanzaixian-android-debug-20260929-calendar-layout-v13.apk
+!/releases/youyanzaixian-android-debug-20260929-local-model-key-v14.apk
 *.jks
 *.keystore

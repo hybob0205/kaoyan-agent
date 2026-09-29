@@ -92,7 +92,7 @@ export default function DeviceModelSettings({ onClose, onChange }: { onClose: ()
         <label>接口地址（Base URL）<input required type="url" value={draft.base_url} placeholder="https://服务商地址/v1" onChange={(event) => setDraft({ ...draft, base_url: event.target.value })} /></label>
         <label>对话模型<input required value={draft.model} placeholder="模型名称" onChange={(event) => setDraft({ ...draft, model: event.target.value })} /></label>
         <div className="device-model-form-row"><label>API Key（可选）<input type="password" autoComplete="new-password" value={apiKey} onChange={(event) => setApiKey(event.target.value)} /></label><label>温度<input type="number" inputMode="decimal" min="0" max="2" step="0.1" value={draft.temperature} onChange={(event) => setDraft({ ...draft, temperature: Number(event.target.value) })} /></label></div>
-        <p className="device-model-hint">API Key 只保留在当前应用会话，不写入备份。手机里的 127.0.0.1 指手机本身；HTTP 接口不会加密传输。</p>
+        <p className="device-model-hint">API Key 保存在此设备的应用数据中，退出重开仍可使用，但不会加入备份；换设备需重新填写。卸载应用会清除本地密钥。手机里的 127.0.0.1 指手机本身；HTTP 接口不会加密传输。</p>
         <div className="device-model-actions"><button type="button" className="secondary-button" disabled={testing} onClick={() => void testConnection()}>{testing ? '测试中…' : '测试连接'}</button><button type="submit" className="primary-button compact">保存并使用</button><button type="button" className="text-button" onClick={() => setDraft(null)}>取消编辑</button></div>
       </form> : <button type="button" className="secondary-button device-model-add" onClick={() => { setDraft(blank()); setApiKey(''); setMessage('') }}>＋ 添加模型</button>}
       {message && <p role="status" className="device-model-feedback">{message}</p>}

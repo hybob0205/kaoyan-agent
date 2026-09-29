@@ -80,9 +80,10 @@ test('portable backup includes local Agent data but excludes the model key', () 
   assert.equal(localStorage.getItem('kaoyan-device-model-key-v1'), 'secret')
 })
 
-test('portable backup moves model profiles but not session API keys', () => {
+test('portable backup excludes API keys and profile import clears device-local keys', () => {
   globalThis.localStorage = storage({
     'kaoyan-device-model-profiles-v1': JSON.stringify({ activeId: 'remote', items: [{ id: 'remote', name: '在线', base_url: 'https://example.com/v1', model: 'demo', temperature: 0.2 }] }),
+    'kaoyan-device-model-key-v1:remote': 'secret',
   })
   globalThis.sessionStorage = storage({ 'kaoyan-device-model-key-v1': 'secret', 'kaoyan-device-model-key-v1:remote': 'secret' })
   const backup = readPortableBackup('device')
@@ -90,6 +91,7 @@ test('portable backup moves model profiles but not session API keys', () => {
   restorePortableBackup('device', parsePortableBackup(JSON.stringify(backup)))
   assert.equal(JSON.parse(localStorage.getItem('kaoyan-device-model-v1')).model, 'demo')
   assert.equal(sessionStorage.getItem('kaoyan-device-model-key-v1'), null)
+  assert.equal(localStorage.getItem('kaoyan-device-model-key-v1:remote'), null)
 })
 
 test('portable backup keeps hub AI conversations and sync identities', () => {

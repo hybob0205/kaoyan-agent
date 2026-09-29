@@ -112,11 +112,6 @@ export function restorePortableBackup(namespace: string, backup: PortableBackup)
         localStorage.setItem(modelProfilesKey, data.model_profiles)
         if (active) localStorage.setItem(modelConfigKey, JSON.stringify({ base_url: active.base_url, model: active.model, temperature: active.temperature }))
         else localStorage.removeItem(modelConfigKey)
-        sessionStorage.removeItem(modelKey)
-        for (let i = sessionStorage.length - 1; i >= 0; i--) {
-          const key = sessionStorage.key(i)
-          if (key?.startsWith(`${modelKey}:`)) sessionStorage.removeItem(key)
-        }
       }
     }
     for (const subject of subjects) localStorage.removeItem(studyKey(namespace, subject))
@@ -133,5 +128,19 @@ export function restorePortableBackup(namespace: string, backup: PortableBackup)
     try { write(previous) }
     catch { throw new Error('设备存储空间不足，回滚也未完成；请保留原备份文件') }
     throw new Error('设备存储空间不足，原记录已恢复')
+  }
+  // Keys are device-local secrets, not portable data. Clear them only after the
+  // imported profile set was written successfully, so failed imports keep them.
+  if (namespace === 'device' && backup.model_profiles !== undefined) {
+    localStorage.removeItem(modelKey)
+    sessionStorage.removeItem(modelKey)
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i)
+      if (key?.startsWith(`${modelKey}:`)) localStorage.removeItem(key)
+    }
+    for (let i = sessionStorage.length - 1; i >= 0; i--) {
+      const key = sessionStorage.key(i)
+      if (key?.startsWith(`${modelKey}:`)) sessionStorage.removeItem(key)
+    }
   }
 }

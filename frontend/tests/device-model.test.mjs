@@ -26,7 +26,7 @@ test('device model rejects malformed saved settings', () => {
   assert.equal(readDeviceModelConfig(), null)
 })
 
-test('multiple model profiles switch with separate session keys and keep the active legacy mirror', () => {
+test('multiple model profiles persist separate local keys and switch correctly', () => {
   globalThis.localStorage = storage()
   globalThis.sessionStorage = storage()
   saveDeviceModelProfile({ id: 'one', name: '模型甲', base_url: 'https://one.example/v1', model: 'a', temperature: 0.2 }, 'key-a')
@@ -35,8 +35,17 @@ test('multiple model profiles switch with separate session keys and keep the act
   selectDeviceModelProfile('one')
   assert.equal(readDeviceModelKey(), 'key-a')
   assert.equal(JSON.parse(localStorage.getItem(deviceModelConfigKey)).model, 'a')
-  assert.equal(sessionStorage.getItem('kaoyan-device-model-key-v1'), 'key-a')
+  assert.equal(localStorage.getItem('kaoyan-device-model-key-v1:one'), 'key-a')
   deleteDeviceModelProfile('one')
   assert.equal(readDeviceModelProfiles().activeId, 'two')
   assert.equal(readDeviceModelKey(), 'key-b')
+})
+
+test('device model migrates a legacy session key into local storage', () => {
+  globalThis.localStorage = storage({
+    'kaoyan-device-model-profiles-v1': JSON.stringify({ activeId: 'one', items: [{ id: 'one', name: '模型甲', base_url: 'https://one.example/v1', model: 'a', temperature: 0.2 }] }),
+  })
+  globalThis.sessionStorage = storage({ 'kaoyan-device-model-key-v1:one': 'legacy-key' })
+  assert.equal(readDeviceModelKey(), 'legacy-key')
+  assert.equal(localStorage.getItem('kaoyan-device-model-key-v1:one'), 'legacy-key')
 })

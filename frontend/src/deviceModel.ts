@@ -47,7 +47,15 @@ export function readDeviceModelConfig(): DeviceModelConfig | null {
 export function readDeviceModelKey(profileId?: string): string {
   const profiles = readDeviceModelProfiles()
   const id = profileId || profiles.activeId
-  return sessionStorage.getItem(`${deviceModelKeyKey}:${id}`) || (id === profiles.activeId ? sessionStorage.getItem(deviceModelKeyKey) || '' : '')
+  const profileKey = `${deviceModelKeyKey}:${id}`
+  try {
+    const saved = localStorage.getItem(profileKey)
+    if (saved) return saved
+    // Migrate keys saved by older APK builds, where keys only survived the current session.
+    const legacy = sessionStorage.getItem(profileKey) || (id === profiles.activeId ? sessionStorage.getItem(deviceModelKeyKey) || '' : '')
+    if (legacy) localStorage.setItem(profileKey, legacy)
+    return legacy
+  } catch { return '' }
 }
 
 function persist(profiles: DeviceModelProfiles, key?: string) {
@@ -56,12 +64,12 @@ function persist(profiles: DeviceModelProfiles, key?: string) {
   if (active) localStorage.setItem(deviceModelConfigKey, JSON.stringify({ base_url: active.base_url, model: active.model, temperature: active.temperature }))
   else localStorage.removeItem(deviceModelConfigKey)
   if (key !== undefined && active) {
-    if (key) sessionStorage.setItem(`${deviceModelKeyKey}:${active.id}`, key)
-    else sessionStorage.removeItem(`${deviceModelKeyKey}:${active.id}`)
+    const storageKey = `${deviceModelKeyKey}:${active.id}`
+    if (key) localStorage.setItem(storageKey, key)
+    else localStorage.removeItem(storageKey)
+    sessionStorage.removeItem(storageKey)
   }
-  const activeKey = active ? sessionStorage.getItem(`${deviceModelKeyKey}:${active.id}`) || '' : ''
-  if (activeKey) sessionStorage.setItem(deviceModelKeyKey, activeKey)
-  else sessionStorage.removeItem(deviceModelKeyKey)
+  sessionStorage.removeItem(deviceModelKeyKey)
 }
 
 export function saveDeviceModelProfile(input: DeviceModelProfile, key: string): DeviceModelProfiles {
@@ -84,8 +92,7 @@ export function saveDeviceModelProfile(input: DeviceModelProfile, key: string): 
 export function selectDeviceModelProfile(id: string): DeviceModelProfiles {
   const profiles = readDeviceModelProfiles()
   if (!profiles.items.some((item) => item.id === id)) throw new Error('模型配置不存在')
-  const previousKey = sessionStorage.getItem(deviceModelKeyKey)
-  if (previousKey && profiles.activeId) sessionStorage.setItem(`${deviceModelKeyKey}:${profiles.activeId}`, previousKey)
+  if (profiles.activeId) readDeviceModelKey(profiles.activeId)
   const next = { ...profiles, activeId: id }
   persist(next)
   return next
@@ -95,6 +102,7 @@ export function deleteDeviceModelProfile(id: string): DeviceModelProfiles {
   const profiles = readDeviceModelProfiles()
   const items = profiles.items.filter((item) => item.id !== id)
   const next = { items, activeId: profiles.activeId === id ? items[0]?.id || '' : profiles.activeId }
+  localStorage.removeItem(`${deviceModelKeyKey}:${id}`)
   sessionStorage.removeItem(`${deviceModelKeyKey}:${id}`)
   persist(next)
   return next
