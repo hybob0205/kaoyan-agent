@@ -1,0 +1,98 @@
+[
+  {
+    "glyph": "hong",
+    "source_cell": [
+      30,
+      32,
+      72,
+      98
+    ],
+    "alpha_bbox": [
+      5,
+      7,
+      38,
+      59
+    ],
+    "destination": [
+      1095,
+      959
+    ],
+    "size": [
+      33,
+      52
+    ],
+    "scale": 1
+  },
+  {
+    "glyph": "yang",
+    "source_cell": [
+      82,
+      32,
+      126,
+      98
+    ],
+    "alpha_bbox": [
+      6,
+      8,
+      39,
+      59
+    ],
+    "destination": [
+      1095,
+      1026
+    ],
+    "size": [
+      33,
+      51
+    ],
+    "scale": 1
+  },
+  {
+    "glyph": "qian",
+    "source_cell": [
+      136,
+      32,
+      178,
+      98
+    ],
+    "alpha_bbox": [
+      6,
+      6,
+      36,
+      60
+    ],
+    "destination": [
+      978,
+      958
+    ],
+    "size": [
+      30,
+      54
+    ],
+    "scale": 1
+  },
+  {
+    "glyph": "fan",
+    "source_cell": [
+      187,
+      32,
+      234,
+      98
+    ],
+    "alpha_bbox": [
+      6,
+      9,
+      41,
+      57
+    ],
+    "destination": [
+      976,
+      1028
+    ],
+    "size": [
+      35,
+      48
+    ],
+    "scale": 1
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-29T00:00:00+08:00",
+  "title": "Design System: 考研 Agent",
+  "extensions": {
+    "shadows": [
+      {"name":"surface","value":"0 12px 34px #173f3214","purpose":"浮层层级"},
+      {"name":"night-surface","value":"0 12px 34px #0004","purpose":"夜间浮层层级"}
+    ],
+    "motion": [
+      {"name":"arrival","value":"350ms cubic-bezier(.16,1,.3,1)","purpose":"首页内容入场，尊重减少动态效果"},
+      {"name":"menu","value":"180ms cubic-bezier(.16,1,.3,1)","purpose":"主题菜单展开"}
+    ],
+    "breakpoints": [{"name":"phone","value":"760px"},{"name":"compact-phone","value":"360px"}]
+  },
+  "components": [
+    {"name":"主操作","kind":"button","refersTo":"button-primary","html":"<button class=\"ds-primary\">保存设置</button>","css":".ds-primary{background:var(--green-dark,#173f32);color:var(--on-green,#fffef6);border:0;border-radius:10px;min-height:46px;padding:10px 16px}.ds-primary:hover{background:#326c4e}.ds-primary:focus-visible{outline:3px solid var(--green,#245c43);outline-offset:3px}.ds-primary:active{transform:scale(.98)}"},
+    {"name":"次操作","kind":"button","html":"<button class=\"ds-secondary\">返回</button>","css":".ds-secondary{background:var(--surface,#fffcf4);color:var(--ink,#183229);border:1px solid var(--line,#d8d9c9);border-radius:9px;min-height:44px;padding:8px 16px}.ds-secondary:hover{background:var(--surface-soft,#ecebdf)}.ds-secondary:focus-visible{outline:3px solid var(--green,#245c43);outline-offset:3px}"},
+    {"name":"输入框","kind":"input","refersTo":"field","html":"<label>称呼 <input class=\"ds-field\" placeholder=\"填写称呼\"></label>","css":".ds-field{background:var(--input,#fffdf6);color:var(--ink,#183229);border:1px solid var(--line,#d8d9c9);border-radius:10px;min-height:46px;font-size:16px;padding:0 10px}.ds-field:focus-visible{outline:3px solid var(--green,#245c43);outline-offset:3px}"},
+    {"name":"内容容器","kind":"card","refersTo":"container","html":"<section class=\"ds-card\">学习记录</section>","css":".ds-card{background:var(--surface,#fffcf4);color:var(--ink,#183229);border:1px solid var(--line,#d8d9c9);border-radius:14px;padding:18px}"},
+    {"name":"标签","kind":"chip","html":"<span class=\"ds-tag\">数学二</span>","css":".ds-tag{background:var(--surface-soft,#ecebdf);color:var(--ink,#183229);border-radius:6px;padding:4px 8px}"},
+    {"name":"页面导航","kind":"nav","html":"<nav class=\"ds-nav\"><a href=\"#chat\">对话</a><a href=\"#tasks\">任务</a></nav>","css":".ds-nav{display:flex;gap:8px}.ds-nav a{color:var(--muted,#5e6b5e);padding:10px 16px;text-decoration:none;border-radius:9px}.ds-nav a:hover{color:var(--green,#245c43);background:var(--soft-green,#e4e9dc)}.ds-nav a:focus-visible{outline:3px solid var(--green,#245c43);outline-offset:3px}"}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "有研在先",
+  "short_name": "有研在先",
+  "description": "考研学习与错题复习",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f2ea",
+  "theme_color": "#294e3c",
+  "icons": [
+    { "src": "/app-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/app-icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,361 @@
+/* Approved paper / forest design, shared by every bundled application. */
+/* Illustrations are decorative; all labels and statistics remain live DOM. */
+@font-face { font-family: 'StudyNumerals'; src: url('/study-hub/vendor/katex/fonts/KaTeX_Main-Regular.woff2') format('woff2'); font-display: swap; font-weight: 400 600; }
+html[data-app][data-theme] {
+  --paper: #f7f8f4; --surface: #ffffff; --surface-soft: #edf2eb; --input: #fbfcf9;
+  --ink: #183229; --muted: #586b60; --line: #d5ddd3; --green: #245c43;
+  --green-dark: #173f32; --soft-green: #e5eee3; --accent: #a84832; --danger: #a53932;
+  --danger-soft: #f9e8e2; --success: #286b47; --on-green: #fffef6;
+  --shadow: 0 12px 34px #173f3214; --art-brightness: 1; --art-opacity: 1;
+  --blue: var(--green); --pale: var(--soft-green); --white: var(--surface);
+  --font-cjk: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif;
+  background: var(--paper); color: var(--ink); font-family: var(--font-cjk); color-scheme: light;
+  scrollbar-color: #8ca18d var(--paper); scrollbar-width: thin;
+}
+html[data-app][data-theme=paper] {
+  --paper: #f4f2ea; --surface: #fffcf4; --surface-soft: #ecebdf; --input: #fffdf6;
+  --ink: #183229; --muted: #5e6b5e; --line: #d8d9c9; --green: #245c43;
+  --green-dark: #173f32; --soft-green: #e4e9dc;
+}
+html[data-app][data-theme=night] {
+  --paper: #121e1a; --surface: #1c2c25; --surface-soft: #26382e; --input: #17271f;
+  --ink: #edf1e8; --muted: #b5c3b4; --line: #43554a; --green: #add0ad;
+  --green-dark: #2f5d43; --soft-green: #2c4535; --accent: #ecae93; --danger: #f1afa3;
+  --danger-soft: #49322b; --success: #afd9b3; --on-green: #fffef6;
+  --shadow: 0 12px 34px #0004; --art-brightness: .36; --art-opacity: .65;
+  color-scheme: dark;
+}
+html[data-app][data-theme] body { background: var(--paper); color: var(--ink); font-family: var(--font-cjk); line-height: 1.65; }
+html[data-app][data-theme] ::selection { background: var(--green-dark); color: var(--on-green); }
+html[data-app][data-theme] :is(input, textarea) { caret-color: var(--green); }
+html[data-app][data-theme] :is(input, textarea)::placeholder { color: var(--muted); opacity: .9; }
+html[data-app][data-theme] :is(button, a, summary, input, select, textarea):focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+html[data-app][data-theme] :is(button, a, summary) { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+html[data-app][data-theme] button:disabled { opacity: .48; cursor: not-allowed; }
+html[data-app][data-theme] [hidden] { display: none !important; }
+html[data-app][data-theme] :is(h1, h2, h3, h4) { color: var(--ink); text-wrap: pretty; }
+html[data-app][data-theme] :is(.muted, .hint, .device-lead, .device-model-intro, .device-model-hint, .device-model-item small, .device-agent-card > p, .device-backup p, .device-unavailable p, .card-meta, .qmeta, .card-summary, .subject-desc, .scope-note, .chat-footnote, .chat-heading p, .record-month-toggle span, .review-plan-day small, .review-plan-day ul, .analysis-task-copy span, .brand small, footer, .crumb) { color: var(--muted); }
+html[data-app][data-theme] :is(.device-header, .topbar, #sidebar, .sidebar, .workspace > header, .subject-home > header) { background: var(--paper); color: var(--ink); border-color: var(--line); box-shadow: none; backdrop-filter: none; }
+html[data-app][data-theme] :is(.brand, header b, .card-question, .card-knowledge, .record-day-toggle span:first-child, .record-month-toggle b, .chat-markdown strong, .knowledge-item b, .stat strong) { color: var(--ink); }
+html[data-app][data-theme] :is(.brand-mark, .brandmark) { background: var(--green-dark); color: var(--on-green); border-radius: 9px; box-shadow: none; }
+html[data-app][data-theme] :is(.mode-content h1, .device-content h1) { color: var(--ink); }
+html[data-app][data-theme] :is(.panel, .card, .question, .article, .stat, .passage, .device-agent-card, .device-model, .device-model-dialog, .device-schedule-dialog, .device-model-item, .form-section, .settings-form, .account-section, .dashboard-widget > section, .school-candidate, .week-day, .stage-phase, .quiz-card, .review-content, .knowledge-card, .chat-section, .filter-bar, .mistake-card, .knowledge-item, .record-month, .record-day, .review-plan-day, .review-summary-item, .chat-batch-tools, .chat-batch-item, .export-history-item, .analysis-task, .library-quick-actions, .review-hub-topics, .recognized-question-preview, .stat-result-item, .record-option, .mode-options button, dialog) {
+  background-color: var(--surface); background-image: none; color: var(--ink); border-color: var(--line); border-radius: 14px;
+}
+html[data-app][data-theme] :is(.panel, .card, .question, .device-agent-card, .mistake-card, .knowledge-item, .chat-section) { box-shadow: none; }
+html[data-app][data-theme] :is(.card p, .card h2, .article p, .article li, .qbody, .question p, .recognized-question-text, .review-choice, .stat-result-item b, .chat-markdown h3, .chat-markdown h4) { color: var(--ink); }
+html[data-app][data-theme] :is(input:not([type=checkbox]):not([type=radio]), select, textarea, .field input, .field select, .field textarea, .device-model-form input, .device-schedule-dialog form input, .device-agent-fields input, .device-agent-scores select, .device-agent-ask textarea, .filter-bar input, .filter-bar select, .chat-toolbar select, .chat-context select, .review-hub-controls select, .review-hub-controls input) {
+  background: var(--input); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; min-height: 46px; font-size: 16px;
+}
+html[data-app][data-theme] :is(input[type=checkbox], input[type=radio], progress) { accent-color: var(--green); }
+html[data-app][data-theme] :is(.primary, .primary-button, .device-model-add) { background: var(--green-dark); color: var(--on-green); border: 0; border-radius: 10px; min-height: 46px; box-shadow: none; }
+html[data-app][data-theme] :is(.primary, .primary-button):hover:not(:disabled) { background: #326c4e; color: #fff; }
+html[data-app][data-theme] :is(.secondary, .secondary-button, .quiet, .light-button, .close, .device-model-close, .device-schedule-dialog header button, .device-model-item-actions button, .device-schedule-list button, .device-model-done, .device-schedule-done, .widget-order-controls button, .card-actions button, .module-links button, .question-view-switch button) {
+  background: var(--surface); color: var(--ink); border-color: var(--line); border-radius: 9px; min-height: 44px;
+}
+html[data-app][data-theme] :is(.text-button, a.resource-link, .device-agent-links a, .subject-enter, .home-bottom .text-button) { color: var(--green); }
+html[data-app][data-theme] :is(.delete, .danger, .device-model-item-actions .danger, .incorrect) { color: var(--danger); }
+html[data-app][data-theme] .correct { color: var(--success); }
+html[data-app][data-theme] :is(.form-error, .analysis-task.is-error) { color: var(--danger); background: var(--danger-soft); border-color: var(--danger); }
+html[data-app][data-theme] :is(.record-month-toggle, .record-day-toggle, .record-day-head, .chat-context, .review-question, .review-answer, .ai-result, .analysis-progress, .filter-bar .search, .knowledge-search, .mastery, .tag, .subject-pill, .review-session-progress, .chat-markdown code, .rich-text code, .source-text-preview, .account-details > div, .device-agent-summary, .device-offline-status, .service-state, .agent-device-note, .formula-box, .answer, .chip, .notice, .subject-switch, .topic-tag, .exam-controls, .question-picker, .badge, .pill, .review-hub-stats > div, .recognized-option > span) {
+  background: var(--surface-soft); color: var(--ink); border-color: var(--line);
+}
+html[data-app][data-theme] :is(.mastery.low, .review-choice.incorrect) { background: var(--danger-soft); color: var(--danger); }
+html[data-app][data-theme] :is(.mastery.done, .review-choice.correct, .review-choice.selected, .option:has(input:checked), .device-model-item.active) { background: var(--soft-green); color: var(--ink); border-color: var(--green); }
+html[data-app][data-theme] :is(.recognized-option, .review-choice) { background: var(--surface); color: var(--ink); border-color: var(--line); }
+html[data-app][data-theme] :is(.progress, .bar, .analysis-progress-track) { background: var(--line); }
+html[data-app][data-theme] :is(.progress span, .bar i, .analysis-progress-track i) { background: var(--green); }
+html[data-app][data-theme] :is(.empty, .empty b, .chat-empty, .device-model-empty, .mode-content > p) { color: var(--muted); }
+html[data-app][data-theme] :is(.empty, .chat-empty) { background: var(--surface-soft); border-color: var(--line); }
+html[data-app][data-theme] :is(label, .field, .review-hub-controls label, .review-hub-stats span, .review-hub-stats b, .stat em, .stat span, .scope-note, .record-number, .photo-draft-head span, .record-option small, .card-source-empty, .chat-batch-item small, .review-summary-group h3 span) { color: var(--muted); }
+html[data-app][data-theme] .review-hub-stats b { color: var(--green); }
+html[data-app][data-theme] :is(.sidebar nav a, #sidebar nav a) { color: var(--muted); border-left: 0; }
+html[data-app][data-theme] :is(nav a.active, nav a:hover, .subject-switch a[aria-current=page], .exam-section-tabs a[aria-current], .question-picker a[aria-current=true], .question-view-switch button.active) { color: var(--green); background: var(--soft-green); border-color: var(--line); }
+html[data-app][data-theme] :is(.exam-grid a, .exam-section-tabs a, .subject-switch a) { background: var(--surface); color: var(--ink); border-color: var(--line); }
+html[data-app][data-theme] :is(.exam-grid a.done, .exam-grid a[aria-current=true]) { background: var(--green-dark); color: var(--on-green); }
+html[data-app][data-theme] :is(.welcome, .welcome-card, .auth-intro, .due-banner, .review-hub-hero) { background: var(--green-dark) !important; color: var(--on-green); border: 0; border-radius: 14px; }
+html[data-app][data-theme] :is(.welcome, .welcome-card, .auth-intro, .due-banner, .review-hub-hero) :is(h1, h2, h3, p, strong, b) { color: var(--on-green); }
+html[data-app][data-theme] :is(.device-model-dialog, .device-schedule-dialog, dialog) { border: 1px solid var(--line); box-shadow: 0 24px 80px #071e1955; max-width: calc(100vw - 24px); }
+html[data-app][data-theme] dialog::backdrop { background: #0c1c16a6; backdrop-filter: blur(3px); }
+html[data-app][data-theme] dialog .theme-options { position: fixed; right: 30px; top: 80px; }
+html[data-app][data-theme] :is(.rich-text, .chat-markdown, .qbody, .recognized-question-text) { overflow-wrap: anywhere; line-height: 1.85; }
+html[data-app][data-theme] :is(.rich-text, .chat-markdown) :is(h2, h3, h4) { color: var(--ink); margin-top: 1.3em; }
+html[data-app][data-theme] :is(.rich-text pre, .chat-markdown pre) { background: var(--input); color: var(--ink); border: 1px solid var(--line); }
+html[data-app][data-theme] :is(.katex, .katex-display, .katex-display > .katex) { color: inherit; }
+html[data-app][data-theme] .katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 8px 0; }
+html[data-app][data-theme] .qbody .katex { white-space: nowrap; }
+html[data-app][data-theme] :is(.chat-message, .device-agent-message, .chat-messages article) { background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 14px; box-shadow: none; }
+html[data-app][data-theme] :is(.chat-message.user, .device-agent-message.user, .chat-messages article.user) { background: var(--soft-green); color: var(--ink); border-color: transparent; }
+html[data-app][data-theme] .chat-message b { color: var(--green); }
+html[data-app][data-theme] :is(.chat-messages, .device-agent-messages, .chat-messages article) { min-width: 0; }
+html[data-app][data-theme] :is(.toast, #toast) { background: var(--green-dark); color: var(--on-green); box-shadow: var(--shadow); }
+html[data-app][data-theme] :is(.eyebrow, .dialog-kicker, .subject-index) { display: none; }
+
+/* A single accessible theme menu, in the top app bar on every route. */
+.theme-control { display: inline-flex; flex: none; vertical-align: middle; }
+.theme-picker { position: relative; z-index: 80; color: var(--ink); }
+.theme-picker summary { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 48px; min-height: 48px; padding: 7px; border-radius: 10px; cursor: pointer; list-style: none; font-size: 13px; color: var(--ink); }
+.theme-picker summary::-webkit-details-marker { display: none; }
+.theme-picker summary svg { width: 24px; height: 24px; flex: none; }
+.theme-picker[open] summary { background: var(--soft-green); }
+.theme-options { position: absolute; right: 0; top: calc(100% + 8px); width: 188px; padding: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+.theme-options button { display: flex; width: 100%; align-items: center; gap: 10px; min-height: 46px; padding: 8px 10px; border: 0; border-radius: 9px; color: var(--ink); background: transparent; text-align: left; font-size: 14px; }
+.theme-options button:hover, .theme-options button[aria-pressed=true] { background: var(--soft-green); }
+.theme-check { margin-left: auto; visibility: hidden; color: var(--green); }
+[aria-pressed=true] > .theme-check { visibility: visible; }
+.theme-swatch { width: 20px; height: 20px; border: 1px solid #899b87; border-radius: 50%; background: #f7f8f4; }
+.theme-swatch.paper { background: #e9e2cc; }.theme-swatch.night { background: #173f32; }.theme-swatch.system { background: #f7f8f4; box-shadow: inset -9px 0 #173f32; }
+.study-icon { width: 30px; height: 30px; flex: none; }
+html[data-app][data-theme] .icon-button { display: inline-grid; place-items: center; width: 48px; height: 48px; min-width: 48px; padding: 9px; border: 0; background: transparent; color: var(--ink); border-radius: 10px; }
+.icon-button .study-icon { width: 25px; height: 25px; }
+.icon-button:hover { background: var(--soft-green); }
+html[data-app][data-theme] .device-header { min-height: 76px; flex-wrap: nowrap; padding: 12px max(20px, env(safe-area-inset-left)); gap: 12px; }
+html[data-app][data-theme] .device-header-actions { display: flex; margin-left: auto; width: auto; flex: none; gap: 6px; }
+.device-header strong { font-size: 18px; }
+.device-header .brand-mark { width: 38px; height: 38px; flex: none; }
+
+/* Live square calendar on the generated desk plate. */
+.home-content { max-width: 1050px; padding-top: 0; }
+.home-calendar-scene { position: relative; isolation: isolate; display: grid; place-items: center; min-height: 400px; padding: 30px 20px; margin: 0 -20px; overflow: hidden; }
+.home-calendar-scene::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/ui-art/study-desk.png') center / cover; filter: brightness(var(--art-brightness)); opacity: var(--art-opacity); }
+html[data-app][data-theme] .device-countdown { width: min(100%, 300px); aspect-ratio: 1; margin: 0; padding: 0; border: 0; border-radius: 10px 10px 6px 6px; background: var(--surface) !important; color: var(--ink); box-shadow: 0 7px 0 var(--surface-soft), 0 10px 0 var(--line), 0 20px 38px #132c2338; }
+html[data-app][data-theme] .calendar-top { min-height: 42px; padding: 0 17px; color: var(--on-green); background: var(--green-dark); }
+.calendar-top::before, .calendar-top::after { width: 9px; height: 9px; top: 5px; background: #b5a77d; }
+.calendar-top > span { padding-top: 8px; }
+html[data-app][data-theme] .calendar-body { align-items: center; text-align: center; padding: 20px 16px 7px; }
+html[data-app][data-theme] .calendar-body > span:first-child { font-size: 17px; font-weight: 500; }
+html[data-app][data-theme] .calendar-body strong { font-family: 'StudyNumerals', Georgia, serif; font-size: 108px; color: var(--ink); line-height: 1; font-weight: 500; }
+html[data-app][data-theme] .calendar-body strong.calendar-long { font-size: 72px; }
+html[data-app][data-theme] .calendar-body strong i { font-weight: 400; font-size: 17px; }
+html[data-app][data-theme] .calendar-exam-date { color: var(--muted); font-size: 12px; margin-top: 5px; }
+html[data-app][data-theme] .calendar-bottom { color: var(--green); border-color: var(--line); font-size: 12px; }
+.home-learning { padding: 16px 0 8px; }
+.home-learning h2 { font-size: 22px; margin: 12px 0 14px; }
+html[data-app][data-theme] .home-learning .device-apps { display: block; margin: 0; border-radius: 14px; overflow: hidden; background: var(--surface); }
+html[data-app][data-theme] .home-learning .device-apps :is(a, button) { display: flex; align-items: center; flex-direction: row; gap: 18px; width: 100%; min-height: 90px; padding: 18px 20px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; text-align: left; color: var(--ink); box-shadow: none; }
+html[data-app][data-theme] .home-learning .device-apps :is(a, button):last-child { border-bottom: 0; }
+html[data-app][data-theme] .home-learning .device-apps :is(a, button):hover { background: var(--soft-green); }
+.home-learning .device-apps > * > span { display: grid; gap: 4px; min-width: 0; }
+.home-learning .device-apps .study-icon { width: 32px; height: 32px; color: var(--green); }
+.home-learning .device-apps strong { font-size: 19px; color: var(--ink); }
+html[data-app][data-theme] .home-learning .device-apps small { font-size: 12px; color: var(--muted); font-weight: 400; letter-spacing: 0; }
+html[data-app][data-theme] .home-learning .device-apps b { margin: 0 0 0 auto; font-size: 27px; color: var(--green); }
+html[data-app][data-theme] :is(.device-backup, .device-unavailable) { margin-top: 16px; padding: 16px 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); }
+.device-backup summary, .device-unavailable summary { cursor: pointer; font-weight: 600; min-height: 30px; }
+.home-content details p { font-size: 13px; }
+
+/* Agent: keep long forms separate from the conversation. */
+.agent-paper .device-content { padding-top: 16px; }
+.agent-view-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: var(--surface-soft); margin-bottom: 22px; }
+.agent-view-tabs button { border: 0; background: transparent; color: var(--muted); padding: 10px 4px; min-height: 44px; border-radius: 9px; font-size: 13px; }
+.agent-view-tabs button[aria-current=page] { background: var(--surface); color: var(--green); font-weight: 650; }
+html[data-app][data-theme] #device-agent-chat { background: transparent; border: 0; padding: 0; }
+.device-agent-card-title h2 { font-size: 19px; }
+.agent-paper .device-agent-card > p { font-size: 13px; line-height: 1.7; }
+.agent-paper .device-agent-messages { min-height: 32vh; padding: 14px 0; }
+.agent-paper .device-agent-message { margin: 14px 0; padding: 18px; }
+.agent-paper .device-agent-message.user { margin-left: 28px; }
+.agent-paper .device-agent-message > strong { font-size: 12px; color: var(--green); }
+.agent-paper .device-agent-ask { position: sticky; bottom: 0; padding: 14px 0 max(12px, env(safe-area-inset-bottom)); background: var(--paper); z-index: 2; }
+.agent-paper .device-agent-ask textarea { line-height: 1.7; }
+.agent-paper:has(#device-agent-chat:not([hidden])) .device-content { display: flex; flex-direction: column; height: calc(100dvh - 76px); padding-bottom: 0; }
+.agent-paper .agent-view-tabs { flex: none; }
+html[data-app][data-theme] #device-agent-chat { display: flex; flex-direction: column; flex: 1; min-height: 0; margin: 0; }
+.agent-paper #device-agent-chat > :is(.device-agent-card-title, p) { flex: none; }
+.agent-paper #device-agent-chat > p { margin-bottom: 8px; }
+.agent-paper .device-agent-messages { display: block; flex: 1; min-height: 100px; max-height: none; overflow: auto; overscroll-behavior: contain; margin: 0; padding: 4px 0 16px; }
+.agent-paper .device-agent-ask { position: static; flex: none; display: grid; grid-template-columns: minmax(0, 1fr) 64px; align-items: end; gap: 8px; margin-top: 0; }
+.agent-paper .device-agent-ask label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.agent-paper .device-agent-ask textarea { min-height: 68px; height: 80px; max-height: 130px; resize: vertical; }
+.agent-paper .device-agent-ask button { min-width: 0; width: 64px; min-height: 48px; padding: 10px 8px; margin: 0; font-size: 13px; }
+.device-model-dialog-header .eyebrow { display: none; }
+.device-model-dialog-header h2 { font-size: 25px; }
+.device-model-list { margin: 24px 0; }
+.device-model-item.active { border-width: 1px; }
+html[data-app][data-theme] .device-model-active { color: var(--green); background: transparent; }
+.device-model-feedback { color: var(--ink); background: var(--soft-green); border-radius: 10px; padding: 12px; }
+
+/* Four subject covers: authored image atlas, live text, and theme-specific artwork. */
+html[data-app=study] .subject-home main { max-width: 1050px; margin: 0 auto; padding: 28px 24px 64px; }
+.subject-home .home-hero { margin: 0 0 24px; }
+.subject-home .home-hero h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.3; max-width: 14em; }
+.subject-home .home-hero p { max-width: 44em; font-size: 14px; }
+html[data-app][data-theme] .subject-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+html[data-app][data-theme] .subject-cards .subject-card { isolation: isolate; position: relative; display: flex; align-items: flex-end; min-height: 290px; padding: 22px; border: 0; overflow: hidden; border-radius: 14px; background: var(--surface); box-shadow: none; color: var(--ink); }
+.subject-cards .subject-card::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/ui-art/subject-covers.png') 0 0 / 200% 200%; filter: brightness(var(--art-brightness)); }
+.subject-cards .english-card::before { background-position: 100% 0; }
+.subject-cards .politics-card::before { background-position: 0 100%; }
+.subject-cards .cs408-card::before { background-position: 100% 100%; }
+.subject-cards .subject-icon { display: none; }
+html[data-app][data-theme] .subject-cards .subject-card h2 { font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+html[data-app][data-theme] .subject-cards .subject-card p { font-size: 13px; line-height: 1.6; margin: 0 0 10px; max-width: 25em; color: var(--muted); }
+html[data-app][data-theme] .subject-cards .subject-card b { color: var(--green); font-size: 13px; }
+html[data-app][data-theme] .subject-cards .cs408-card :is(h2, p, b) { color: #fff9e8; }
+.subject-home .home-links { margin-top: 24px; background: transparent; color: var(--muted); font-size: 13px; }
+html[data-app][data-theme] .home-links a { color: var(--green); }
+html[data-app=study] .workspace .welcome { padding: 28px; }
+html[data-app=study] .workspace h1 { letter-spacing: -.02em; }
+html[data-app=study] .question-picker { background: var(--paper); box-shadow: 0 8px 16px var(--paper); position: sticky; top: 0; z-index: 5; padding: 8px 0; }
+html[data-app=study] .question-picker .exam-grid { margin: 6px 0; }
+.agent-inline-back { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; color: var(--ink); border-radius: 9px; }
+.agent-inline-back svg { width: 24px; height: 24px; }
+html[data-app=study] header .theme-control { margin-left: auto; }
+
+/* Mistake list, capture, review session, statistics and AI dialogue. */
+html[data-app=mistake] .subject-card { background: var(--surface); border-color: var(--line); border-radius: 14px; }
+html[data-app=mistake] .subject-card.computer { background: var(--soft-green); }
+html[data-app=mistake] .subject-card strong { color: var(--ink); }
+html[data-app=mistake] .subject-grid { gap: 14px; }
+html[data-app=mistake] .stat { background: transparent; }
+html[data-app=mistake] .due-banner { padding: 24px; }
+html[data-app=mistake] .mistake-card { padding: 20px; }
+html[data-app=mistake] .card-meta { gap: 8px; }
+html[data-app=mistake] :is(.card-meta, .tag, .card-summary, .source-preview-label, .card-knowledge, .subject-desc) { font-size: 13px; }
+html[data-app=mistake] .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.mistake-topbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.mistake-topbar .brand { margin-right: auto; }
+.mistake-topbar .theme-control { margin-left: auto; }
+html[data-app][data-theme] .mistake-topbar #settingsBtn { width: 48px; height: 48px; min-width: 48px; padding: 0; overflow: hidden; font-size: 0; background: transparent; border: 0; }
+.mistake-topbar #settingsBtn::after { content: ''; display: block; margin: auto; width: 24px; height: 24px; background: currentColor; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='1.7' d='m10 3-1 3-3 1-3 3 2 2-1 4 3 2 3-1 2 4 3-1 1-3 4-1 1-3-3-2 1-3-3-2-3 1-1-4z'/%3E%3Ccircle cx='12' cy='12' r='3' fill='none' stroke='black' stroke-width='1.7'/%3E%3C/svg%3E") center / contain no-repeat; }
+html[data-app][data-theme] .agent-device-note { background: transparent; color: var(--muted); border: 0; border-top: 1px solid var(--line); padding: 18px 0; font-size: 13px; }
+.agent-device-note summary { cursor: pointer; min-height: 36px; }
+.agent-device-note p { margin-bottom: 0; }
+html[data-app=mistake] .recognized-question-preview { padding: 18px; }
+html[data-app=mistake] .review-topic-row, html[data-app=mistake] .stat-result-item { background: var(--surface); border-color: var(--line); color: var(--ink); }
+html[data-app=mistake] :is(.review-topic-row span, .review-hub-topics-head span, .stat-result-meta, .stat small, .source-preview-label) { color: var(--muted); }
+html[data-app=mistake] :is(.review-topic-row i, .stat-result-item i) { color: var(--accent); }
+html[data-app=mistake] .image-viewer { background: #0b1310; }
+html[data-app=mistake] .crop-stage { background: #101a16; }
+html[data-app][data-theme] :is(.agent-study-ai-dialog, .agent-study-ai-body, .agent-study-ai-messages) { color: var(--ink); background: var(--surface); }
+html[data-app][data-theme] .hub-ai-dialog { background: var(--surface); color: var(--ink); border-color: var(--line); }
+html[data-app][data-theme] .hub-ai-dialog > p, html[data-app][data-theme] .hub-ai-head small { color: var(--muted); }
+html[data-app][data-theme] .hub-ai-message { background: var(--surface-soft); color: var(--ink); }
+html[data-app][data-theme] .hub-ai-message.user { background: var(--soft-green); }
+html[data-app][data-theme] .hub-ai-close, html[data-app][data-theme] .hub-ai-clear { background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 9px; }
+html[data-app][data-theme] .hub-ai-form [type=submit] { background: var(--green-dark); color: var(--on-green); }
+html[data-app][data-theme] .hub-ai-error { color: var(--danger) !important; }
+html[data-app][data-theme] :is(.hub-source-link, .hub-detail-source) { color: var(--green) !important; }
+
+/* The orb retains its drag behaviour and radial geometry across themes. */
+html[data-app][data-theme] .agent-float-menu .agent-float-ball { background: var(--green-dark); color: var(--on-green); box-shadow: 0 8px 22px #09261d33; }
+html[data-app][data-theme] .agent-float-menu .agent-float-action { background: var(--surface) !important; color: var(--ink) !important; border-color: var(--line) !important; box-shadow: 0 8px 22px #09261d26 !important; }
+html[data-app][data-theme] .agent-float-menu .agent-float-action:hover { background: var(--soft-green) !important; }
+html[data-app][data-theme] .agent-float-menu.is-open .agent-float-ball { background: var(--green-dark); }
+html[data-app][data-theme] .agent-float-menu.is-open .agent-float-ball svg { transform: rotate(45deg); }
+
+@media (min-width: 800px) {
+  .home-content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; align-items: center; }
+  .home-calendar-scene { margin: 24px 0 0; border-radius: 18px; min-height: 450px; }
+  .home-content > details { align-self: start; }
+}
+@media (max-width: 760px) {
+  html[data-app][data-theme] .device-header { padding: 10px 16px; min-height: 68px; }
+  .device-header strong { font-size: 17px; }
+  .theme-picker summary > span { display: none; }
+  .theme-options button > span { display: inline; }
+  .home-content { padding: 0 20px 50px; }
+  .home-calendar-scene { min-height: 362px; padding: 24px 20px; }
+  .home-learning { padding-top: 0; }
+  html[data-app=study] .subject-home main { padding: 20px 18px 64px; }
+  html[data-app][data-theme] .subject-cards { gap: 12px; }
+  html[data-app][data-theme] .subject-cards .subject-card { min-height: 240px; padding: 16px; }
+  html[data-app][data-theme] .subject-cards .subject-card h2 { font-size: 23px; }
+  html[data-app][data-theme] .subject-cards .subject-card p { font-size: 12px; line-height: 1.5; }
+  html[data-app][data-theme] .subject-cards .subject-card b { font-size: 12px; }
+  html[data-app=study] .subject-home > header { height: auto; min-height: 72px; padding: 12px 16px; gap: 8px; }
+  .subject-home header .badge { display: none; }
+  html[data-app=study] .workspace > header { min-height: 60px; height: auto; padding: 8px 16px; gap: 8px; flex-wrap: wrap; }
+  html[data-app=study] .workspace > header .badge { display: none; }
+  html[data-app=mistake] main { padding: 18px 16px max(36px, env(safe-area-inset-bottom)); }
+  html[data-app=mistake] .subject-grid { grid-template-columns: minmax(0, 1fr); }
+  html[data-app=mistake] .subject-card { min-height: 120px; padding: 16px; }
+  html[data-app=mistake] .subject-card.computer { grid-column: 1 / -1; min-height: 180px; }
+  html[data-app=mistake] .subject-card .module-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html[data-app][data-theme] .device-agent-card { padding: 18px; }
+  .agent-paper .device-content { padding: 16px 18px 40px; }
+  .agent-paper:has(#device-agent-chat:not([hidden])) .device-content { height: calc(100dvh - 68px); }
+  .mistake-topbar { flex-wrap: nowrap; }
+  html[data-app=mistake] .sidebar nav { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+  html[data-app=mistake] .sidebar nav a { font-size: 12px; min-height: 48px; white-space: normal; }
+  .agent-paper .device-agent-card-title { flex-wrap: wrap; }
+  .agent-paper .device-agent-card-title h2 { font-size: 18px; }
+  html[data-app][data-theme] :is(.device-model-dialog, .device-schedule-dialog) { max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
+  .device-model-dialog-inner, .device-schedule-dialog-inner { padding: 22px 18px; }
+  .device-model-item { gap: 12px; }
+}
+@media (max-width: 360px) {
+  .device-header { gap: 8px !important; }.device-header strong { font-size: 15px; }
+  html[data-app][data-theme] .subject-cards .subject-card { min-height: 225px; padding: 13px; }
+  html[data-app][data-theme] .subject-cards .subject-card h2 { font-size: 20px; }
+}
+.agent-paper .agent-view-tabs { display: flex; flex-wrap: wrap; }
+.agent-paper .agent-view-tabs button { flex: 1 0 auto; min-height: 44px; }
+.device-school-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+.device-school-actions button { min-height: 44px; }
+.device-school-list { list-style: none; padding: 0; }
+.device-school-list li { padding: 16px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.device-school-list h3 { margin: 0 0 8px; }
+html[data-app][data-theme] .mistake-topbar #settingsBtn::after { display: none; }
+html[data-app][data-theme] .mistake-topbar #settingsBtn { display: grid !important; place-items: center; color: var(--ink); }
+html[data-app][data-theme] .agent-model-frame { width: min(1100px, calc(100vw - 16px)); max-width: none; height: calc(100dvh - 32px); max-height: calc(100dvh - 32px); padding: 0; overflow: hidden; }
+.agent-model-frame > button { position: absolute; right: 8px; top: 8px; z-index: 2; min-height: 44px; padding: 8px 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.agent-model-frame iframe { width: 100%; height: 100%; border: 0; padding-top: 56px; background: var(--paper); }
+.conversation-workspace { display: flex; flex-direction: column; gap: 12px; min-width: 0; min-height: 0; flex: 1; }
+.conversation-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.conversation-list { min-width: 0; overflow: auto; max-height: 65dvh; padding: 12px; border-radius: 10px; background: var(--surface-soft); }
+.conversation-list-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.conversation-list ul { list-style: none; margin: 0; padding: 0; }
+.conversation-list li { display: flex; gap: 6px; align-items: center; padding: 4px; border-radius: 8px; }
+.conversation-list li.active { background: var(--surface); }
+.conversation-list button { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); padding: 6px 10px; }
+.conversation-list .conversation-select { flex: 1; min-width: 0; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border: 0; background: transparent; }
+.conversation-list .conversation-rename { flex: none; padding: 6px; font-size: 12px; background: transparent; border: 0; }
+.conversation-list input[type=checkbox] { width: 18px; height: 18px; flex: none; }
+.conversation-list form input { width: 100%; }
+.conversation-list p { font-size: 13px; color: var(--muted); }
+@media (max-width: 760px) {
+  .conversation-workspace { display: flex; flex-direction: column; gap: 12px; }
+  .conversation-list { flex: none; }
+  .conversation-main { flex: 1; }
+}
+/* The composer belongs to the visible screen, not the scrolling transcript. */
+html[data-app] .agent-paper.is-chat { position: fixed; inset: var(--visible-top, 0px) 0 auto; width: 100%; height: var(--visible-height, 100dvh); min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+html[data-app] .agent-paper.is-chat .device-header { flex: none; }
+html[data-app] .agent-paper.is-chat .device-content { width: 100%; min-width: 0; height: auto; min-height: 0; flex: 1; padding: 8px 16px 0; overflow: hidden; }
+html[data-app] .agent-paper.is-chat .agent-view-tabs { flex-wrap: nowrap; overflow-x: auto; margin-bottom: 8px; padding: 4px; }
+html[data-app] .agent-paper.is-chat .agent-view-tabs button { flex: 0 0 auto; }
+html[data-app] .conversation-main { flex: 1; min-width: 0; min-height: 0; }
+html[data-app] .agent-paper.is-chat .device-agent-messages { min-height: 0; max-height: none; overflow: auto; overflow-wrap: anywhere; }
+html[data-app] .agent-paper.is-chat .conversation-main > p { font-size: 12px; margin: 0 0 6px; flex: none; }
+html[data-app] .agent-paper.is-chat .device-agent-card-title h2 { margin: 4px 0; font-size: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+html[data-app] .agent-paper.is-chat .device-agent-ask { padding: 8px 0 max(8px, env(safe-area-inset-bottom)); }
+html[data-app] .agent-paper.is-chat .device-agent-ask textarea { font-size: 16px; min-height: 52px; height: 64px; max-height: 100px; resize: none; }
+.conversation-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex: none; }
+.conversation-toolbar button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; color: var(--ink); background: transparent; border: 0; border-radius: 10px; }
+html[data-app][data-theme] dialog.conversation-drawer { position: fixed; inset: var(--visible-top, 0px) auto auto 0; margin: 0; width: min(340px, 88vw); max-width: 88vw; height: var(--visible-height, 100dvh); max-height: var(--visible-height, 100dvh); padding: 16px; border: 0; border-radius: 0 16px 16px 0; overflow: auto; background: var(--paper); color: var(--ink); }
+.conversation-drawer header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.conversation-drawer h2 { margin: 0; font-size: 20px; }
+.conversation-drawer header button { min-height: 48px; padding: 8px 12px; }
+.conversation-drawer .conversation-list { padding: 12px 0; max-height: none; overflow: visible; background: transparent; }
+.conversation-drawer form { display: grid; gap: 8px; margin-top: 16px; }
+.conversation-drawer input { font-size: 16px; }
+html[data-app][data-theme] :is(.device-model-dialog, .device-schedule-dialog, .hub-ai-dialog, .agent-model-frame) { max-height: calc(var(--visible-height, 100dvh) - 24px); }
+html[data-app][data-theme] .hub-ai-dialog[open] { display: flex; flex-direction: column; height: calc(var(--visible-height, 100dvh) - 24px); overflow: hidden; box-sizing: border-box; }
+html[data-app][data-theme] .hub-ai-dialog .hub-ai-messages { flex: 1; min-height: 0; max-height: none; overflow: auto; }
+html[data-app][data-theme] .hub-ai-dialog .hub-ai-form { flex: none; }
+html[data-app][data-theme] .hub-ai-dialog textarea { min-height: 52px; height: 64px; box-sizing: border-box; }
+html[data-app] :is(.device-content, .conversation-workspace, .conversation-main, .chat-messages, .device-agent-messages) { min-width: 0; max-width: 100%; }
+html[data-app] :is(input, textarea, select) { max-width: 100%; scroll-margin-block: 24px; }
+@media (max-height: 550px) {
+  html[data-app][data-theme] .hub-ai-dialog > p:not(.hub-ai-error) { display: none; }
+  html[data-app] .agent-paper.is-chat .agent-view-tabs, html[data-app] .agent-paper.is-chat .conversation-main > p { display: none; }
+  html[data-app] .agent-paper.is-chat .device-header { min-height: 48px; padding-block: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-learning, .agent-view-tabs { animation: paper-arrive .35s cubic-bezier(.16,1,.3,1); }
+  .theme-options { animation: paper-arrive .18s cubic-bezier(.16,1,.3,1); transform-origin: top right; }
+  html[data-app][data-theme] :is(button, .subject-card, .record-option) { transition: background-color .18s, border-color .18s, transform .18s; }
+  html[data-app][data-theme] button:active:not(:disabled) { transform: scale(.98); }
+  @keyframes paper-arrive { from { opacity: .65; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) { html[data-app][data-theme] *, html[data-app][data-theme] *::before, html[data-app][data-theme] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }

@@ -1,0 +1,16 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-09-28",
+  "assets": [
+    {
+      "file": "study-desk.png",
+      "source": "exec-e50148f5-5571-44a0-801b-f532ccd0be81.png",
+      "prompt": "Create a production UI background asset, NOT a mockup. Landscape 3:2 composition for an Android postgraduate study app calendar hero. Warm ivory matte paper desk scene, dark forest green linen hardback books barely visible at bottom left edge, softly out-of-focus small sage leafy plant entering only from far upper left. Gentle afternoon light, subtle tangible paper grain, premium calm editorial still life. CENTRAL 70 PERCENT MUST BE EMPTY ivory desk surface, large clear area for a live calendar UI to be layered later. Keep objects quiet and confined to perimeter; bottom right a tiny understated paper edge, absolutely no calendar, NO WORDS, NO TEXT, no numbers, no logos, no phone frame, no controls. Warm #F4F2EA paper and deep #173F32 green, restrained, realistic soft shadows. Must look close to tactile paper study desk artwork used in approved warm-green app concept. Opaque background."
+    },
+    {
+      "file": "subject-covers.png",
+      "source": "exec-0b1845bb-3ae9-4fad-9860-37e37832949f.png",
+      "prompt": "Generate a production UI SPRITE ATLAS image: a perfect square divided into EXACTLY FOUR equal square illustrations in a seamless 2 by 2 grid, no gutters, each quadrant independently usable as a subject cover background. All in one premium tactile paper-collage visual language matching a Chinese study app, warm ivory, muted sage, deep forest green, tiny terracotta bookmark accents. UPPER LEFT: mathematics, elegant thin green abstract smooth graph curve and translucent folded tracing paper on ivory, no axes numbers or formulas. UPPER RIGHT: English reading, sage paper book pages and a single rust bookmark, no letters or words. LOWER LEFT: politics study, cream layered blank note cards held by a simple brass paperclip, minimal warm editorial paper still-life, no flags or slogans. LOWER RIGHT: computer science, deep forest-green textured technical cover with subtle clean circuit traces and a small simple chip diagram, no words or numbers. Keep artwork mainly in UPPER HALF OF EACH QUADRANT so lower half can carry live UI labels. Flat top-down image, subtle tactile print grain, clean restrained forms, not cartoon, no gradient glow. Absolutely NO TEXT, NO LETTERS, NO NUMBERS, no logos, no phone, no UI, no borders around quadrants. Equal square quadrants have exact straight center boundaries for CSS background positioning."
+    }
+  ]
+}

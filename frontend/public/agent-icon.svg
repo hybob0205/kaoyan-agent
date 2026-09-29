@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="考研 Agent">
+  <rect width="512" height="512" rx="112" fill="#294e3c"/>
+  <rect x="40" y="40" width="432" height="432" rx="76" fill="none" stroke="#a9c9ad" stroke-width="8"/>
+  <text x="256" y="335" fill="#f7f7ee" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="264" font-weight="700" text-anchor="middle">研</text>
+</svg>

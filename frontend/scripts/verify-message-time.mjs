@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright')
+const browser = await chromium.launch({ channel: 'chrome', headless: true })
+try {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } })
+  await page.route('https://model.example.test/v1/chat/completions', route => {
+    const body = route.request().postDataJSON()
+    assert.ok(body.messages.every(message => Object.keys(message).every(key => ['role','content'].includes(key))), 'Do not send display timestamps to provider')
+    return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ choices: [{ message: { content: '## 下一步\n先复习定义，再检查积分上下限。\n\n$$\\int_0^1 x^2 dx = \\frac{1}{3}$$' } }] }) })
+  })
+  await page.goto('http://127.0.0.1:5175')
+  await page.evaluate(() => {
+    localStorage.setItem('kaoyan-agent-run-mode-v1','device')
+    localStorage.setItem('kaoyan-device-agent-v1', JSON.stringify({ messages: [{ role: 'user', content: '旧消息没有时间' }] }))
+    localStorage.setItem('kaoyan-device-model-profiles-v1', JSON.stringify({ activeId: 'fixture', items: [{ id: 'fixture', name: '隔离测试模型', base_url: 'https://model.example.test/v1', model: 'fixture', temperature: .2 }] }))
+  })
+  await page.reload()
+  await page.getByText('有研在先', { exact: true }).waitFor()
+  const icon = page.locator('img.brand-mark')
+  assert.ok(await icon.evaluate(el => el.complete && el.naturalWidth > 0))
+  await page.getByRole('button', { name: /学习 Agent 对话分析/ }).click()
+  await page.getByRole('button', { name: '对话', exact: true }).click()
+  assert.equal(await page.locator('.message-time').count(), 0)
+  await page.getByLabel('输入问题', { exact: true }).fill('如何检查定积分？')
+  await page.getByRole('button', { name: '发送', exact: true }).click()
+  await page.getByText('先复习定义，再检查积分上下限。', { exact: true }).waitFor()
+  assert.equal(await page.locator('.message-time').count(), 2)
+  const values = await page.locator('.message-time').evaluateAll(nodes => nodes.map(node => node.dateTime))
+  assert.ok(values.every(value => Math.abs(Date.now()-new Date(value).getTime()) < 60000))
+  await page.reload()
+  await page.getByRole('button', { name: /学习 Agent 对话分析/ }).click()
+  await page.getByRole('button', { name: '对话', exact: true }).click()
+  assert.deepEqual(await page.locator('.message-time').evaluateAll(nodes => nodes.map(node => node.dateTime)), values)
+  await fs.mkdir('../.run/concept-finish', { recursive: true })
+  await page.screenshot({ path: '../.run/concept-finish/chat-timestamps.png' })
+  console.log('PASS: approved icon loaded, new message timestamps persist, no fabricated legacy time, provider payload unchanged')
+} finally { await browser.close() }

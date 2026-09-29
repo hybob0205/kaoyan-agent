@@ -1,0 +1,141 @@
+/* Browser workbench. Shared device-mode and bundled learning apps retain their own layout. */
+html[data-app=agent][data-theme] :is(.web-workspace, .settings-shell, .account-shell, .profile-shell, .auth-layout, .mode-shell) {
+  --text: var(--ink);
+  color: var(--ink);
+}
+html[data-app=agent][data-theme] :is(.web-workspace, .settings-shell, .account-shell, .profile-shell) .topbar {
+  padding: 0 32px; min-height: 76px; height: auto; background: var(--paper); position: relative; z-index: 20;
+}
+html[data-app=agent][data-theme] .topbar-actions { gap: 16px; }
+html[data-app=agent][data-theme] .topbar :is(.account-button, .topbar-more summary, .topbar-more button) { color: var(--ink); background: var(--surface); border-color: var(--line); }
+html[data-app=agent][data-theme] .topbar-more > div { background: var(--surface); border-color: var(--line); box-shadow: var(--shadow); }
+html[data-app=agent][data-theme] .topbar-more summary { min-height: 44px; padding: 9px 14px; }
+html[data-app=agent][data-theme] .web-workspace .topbar-actions > a { background: transparent; color: var(--green); }
+html[data-app=agent][data-theme] :is(.web-workspace, .account-shell) :is(.plan-empty-card p, .week-plan-empty, .week-plan-rationale, .stage-plan-empty, .stage-plan-rationale, .quiz-analysis-heading span, .quiz-analysis-heading p, .account-stats span, .portable-backup p, .portable-actions p, .duration-editor) { color: var(--muted); }
+html[data-app=agent][data-theme] .web-workspace .quiz-analysis-heading strong { color: var(--green); }
+html[data-app=agent][data-theme] .web-workspace :is(.duration-editor button, .difficulty-form) { background: var(--surface-soft); color: var(--ink); border-color: var(--line); }
+.web-workspace .knowledge-heading > button { flex-shrink: 0; white-space: nowrap; }
+html[data-app=agent][data-theme] .profile-shell legend { color: var(--muted); }
+.profile-shell .day-options label { position: relative; }
+.profile-shell .day-options input { width: 1px; height: 1px; min-height: 0; left: 0; top: 0; }
+.profile-shell .day-options label:focus-within { outline: 3px solid var(--green); outline-offset: 3px; }
+.web-workspace .agent-preferences label { white-space: nowrap; }
+.web-workspace .agent-preferences select { width: auto; }
+html[data-app=agent][data-theme] .web-workspace .assistant-heading > span { background: var(--soft-green); color: var(--ink); }
+.web-workbench { display: grid; grid-template-columns: 216px minmax(0, 1fr); max-width: 1600px; margin: auto; }
+.workspace-rail { padding: 32px 20px; border-right: 1px solid var(--line); align-self: start; position: sticky; top: 0; }
+.workspace-rail nav { display: grid; gap: 5px; }
+.workspace-rail nav button { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 12px; background: transparent; border: 0; border-radius: 9px; color: var(--muted); text-align: left; font: inherit; font-size: 14px; }
+.workspace-rail nav button > span:last-child { opacity: 0; }
+.workspace-rail nav button:hover, .workspace-rail nav button[aria-current] { background: var(--soft-green); color: var(--ink); }
+.workspace-rail nav button[aria-current] { font-weight: 700; }
+.workspace-rail nav button[aria-current] > span:last-child { opacity: 1; }
+.workspace-destinations { display: grid; gap: 20px; border-top: 1px solid var(--line); margin-top: 28px; padding: 28px 8px 0; }
+.workspace-destinations a { display: flex; gap: 12px; color: var(--ink); text-decoration: none; align-items: center; font-size: 14px; }
+.workspace-destinations a:hover { color: var(--green); }
+.workspace-destinations small { display: block; color: var(--muted); font-size: 11px; margin-top: 3px; }
+.workspace-storage { margin: 40px 8px 0; font-size: 11px; color: var(--muted); line-height: 1.9; }
+.workspace-main { min-width: 0; padding: 0 clamp(20px, 3vw, 48px); }
+html[data-app=agent][data-theme] .web-workspace .dashboard-layout-bar { max-width: none; margin: 0; padding: 34px 0 24px; gap: 24px; }
+.web-workspace .dashboard-layout-bar > div:first-child { display: block; }
+.web-workspace .dashboard-layout-bar h1 { font-size: clamp(24px, 2.4vw, 34px); margin: 0 0 8px; line-height: 1.35; }
+html[data-app=agent][data-theme] .dashboard-layout-bar span { color: var(--muted); }
+html[data-app=agent][data-theme] .web-workspace .dashboard-grid { max-width: none; padding: 0 0 64px; gap: 20px; grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr); }
+html[data-app=agent][data-theme] .web-workspace .dashboard-widget > section { border-radius: 14px; border-color: var(--line); }
+.web-workspace .dashboard-widget[data-widget-id=countdown] { align-items: center; justify-content: center; }
+html[data-app=agent][data-theme] .web-workspace .dashboard-calendar { width: min(100%, 310px); height: auto; aspect-ratio: 1; margin: 0; }
+html[data-app=agent][data-theme] .web-workspace .welcome-card { position: relative; padding: clamp(24px, 3vw, 40px); overflow: hidden; display: flex; flex-direction: column; justify-content: center; background: var(--green-dark) !important; }
+.web-workspace .welcome-card::after { content: ''; position: absolute; inset: 0; background: url('/ui-art/study-desk.png') center / cover; opacity: .1; mix-blend-mode: luminosity; pointer-events: none; }
+.web-workspace .welcome-card > * { position: relative; z-index: 1; }
+html[data-app=agent][data-theme] .web-workspace .welcome-card h1 { font-size: clamp(26px, 2.9vw, 40px); margin: 20px 0 12px; color: var(--on-green); }
+.web-workspace .welcome-card time { font-size: 13px; color: var(--on-green); }
+.web-workspace .welcome-card p { font-size: 14px; font-weight: 400; }
+.web-workspace .welcome-card::before { display: none; }
+html[data-app=agent][data-theme] .web-workspace :is(.target-card, .subjects-card) { padding: 26px; }
+html[data-app=agent][data-theme] :is(.web-workspace, .account-shell, .settings-shell, .profile-shell, .mode-shell) .eyebrow { display: none; }
+html[data-app=agent][data-theme] .web-workspace :is(.plan-empty-card > span, .plan-empty-card .empty-number) { display: none; }
+html[data-app=agent][data-theme] .web-workspace :is(.task-board, .week-plan-card, .stage-plan-card, .schools-card, .quiz-card, .review-card, .review-empty, .knowledge-card, .assistant-card) { padding: 28px; }
+html[data-app=agent][data-theme] :is(.web-workspace, .account-shell, .settings-shell, .profile-shell) :is(.lead, .section-hint, .secret-note, .step-label, .field-value, .target-card > span, .target-card p, .subjects-card > span, .subject-meter em, .meta-row, .task-meta, .task-secondary span, .task-add-header, .week-plan-heading p, .stage-plan-heading p, .schools-heading p, .school-year, .school-source, .school-score span, .school-note, .quiz-heading p, .quiz-hint, .quiz-feedback, .review-heading p, .review-period-empty p, .review-metrics span, .review-reasons, .knowledge-heading p, .knowledge-hint, .document-list span, .assistant-empty p, .assistant-heading p, .agent-thinking, .conversation-summary-status, .account-section-heading p, .account-section-heading > span, .account-stats small, .account-review-line, .account-details dt, .app-sync-row small, .embedding-options p, .embedding-options small) { color: var(--muted); }
+html[data-app=agent][data-theme] :is(.web-workspace, .account-shell, .settings-shell, .profile-shell) :is(.school-form, .task-add-form, .week-plan-summary, .stage-plan-summary, .rest-day, .quiz-analysis, .quiz-explanation, .review-period, .subject-time-row span, .account-stats > div, .account-subjects span, .app-sync-row, .embedding-options, .day-options label, .agent-action-preview, .suggestion-row button) { background: var(--surface-soft); color: var(--ink); border-color: var(--line); }
+html[data-app=agent][data-theme] :is(.web-workspace, .account-shell, .settings-shell, .profile-shell) :is(.task-title, .document-list strong, .subject-time-row b, .week-day h3, .week-day h4, .stage-phase h3, .quiz-question legend, .quiz-question label, .quiz-analysis-grid p, .review-period h3, .school-candidate h3, .account-details dd, .embedding-options legend) { color: var(--ink); }
+html[data-app=agent][data-theme] :is(.web-workspace, .account-shell, .settings-shell, .profile-shell) :is(.school-score strong, .week-plan-summary strong, .review-metrics strong, .account-stats strong, .quiz-score, .text-button, .subject-meter b) { color: var(--green); }
+html[data-app=agent][data-theme] .web-workspace :is(.document-empty, .school-empty, .plan-empty-card, .assistant-empty) { background: var(--surface); color: var(--muted); }
+html[data-app=agent][data-theme] .web-workspace :is(.document-empty, .school-empty) { padding: 38px 20px; border: 1px dashed var(--line); border-radius: 10px; }
+html[data-app=agent][data-theme] .web-workspace :is(.task-list, .task-list li, .document-list, .document-list li, .review-metrics, .review-metrics > div, .school-actions, .rag-area, .meta-row) { border-color: var(--line); }
+html[data-app=agent][data-theme] .web-workspace :is(.week-day, .stage-phase, .quiz-question, .quiz-analysis-grid > div) { background: var(--surface); color: var(--ink); border-color: var(--line); }
+html[data-app=agent][data-theme] .web-workspace .subject-meter > div { background: var(--line); }
+html[data-app=agent][data-theme] .web-workspace .subject-meter i { background: var(--green); }
+html[data-app=agent][data-theme] .web-workspace :is(.chat-messages article, .rag-answer > .rich-text) { background: var(--surface-soft); color: var(--ink); border: 0; }
+html[data-app=agent][data-theme] .web-workspace .chat-messages article.user { background: var(--green-dark); color: var(--on-green); }
+html[data-app=agent][data-theme] .web-workspace .chat-messages article.user > span { color: var(--on-green); }
+html[data-app=agent][data-theme] .web-workspace .chat-messages article > span { color: var(--muted); }
+.web-workspace .chat-messages { min-height: 120px; max-height: 52dvh; }
+.web-workspace .chat-messages article { max-width: min(86%, 72ch); }
+html[data-app=agent][data-theme] :is(.settings-shell, .account-shell, .profile-shell) :is(.settings-content, .account-content, .profile-form) { padding-top: 40px; }
+html[data-app=agent][data-theme] :is(.settings-content, .account-content, .profile-form) > h1 { font-size: clamp(26px, 3vw, 38px); margin-top: 0; }
+html[data-app=agent][data-theme] :is(.save-result, .health-result) { background: var(--soft-green); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; }
+html[data-app=agent][data-theme] .health-result.failure { background: var(--danger-soft); color: var(--danger); }
+html[data-app=agent][data-theme] :is(.settings-shell, .account-shell, .profile-shell) :is(.account-section, .settings-form, .form-section) { border-radius: 14px; box-shadow: none; }
+html[data-app=agent][data-theme] .day-options label.selected { background: var(--soft-green); border-color: var(--green); }
+html[data-app=agent][data-theme] .auth-panel { background: var(--paper); }
+html[data-app=agent][data-theme] .auth-intro { border-radius: 0; background: var(--green-dark) !important; }
+.auth-intro::after { content: ''; inset: 0; background: url('/ui-art/study-desk.png') center / cover; opacity: .12; mix-blend-mode: luminosity; }
+.auth-intro h1 { font-size: clamp(32px, 4vw, 54px); }
+html[data-app=agent][data-theme] .auth-layout .mode-tabs { border-color: var(--line); }
+html[data-app=agent][data-theme] .auth-layout .mode-tabs button { color: var(--muted); background: transparent; }
+html[data-app=agent][data-theme] .auth-layout .mode-tabs button.active { color: var(--green); border-color: var(--green); }
+html[data-app=agent][data-theme] .mode-shell .mode-options button { border: 1px solid var(--line); box-shadow: none; border-radius: 14px; }
+html[data-app=agent][data-theme] .mode-options button:hover { background: var(--soft-green); border-color: var(--green); }
+.mode-options button > span { display: none; }
+.mode-options button strong { font-size: 22px; }
+html[data-app=agent][data-theme] .mode-options :is(small, b) { color: var(--muted); }
+@media (min-width: 1100px) {
+  .settings-content { max-width: 1180px; display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 0 32px; align-items: start; }
+  .settings-content > :is(h1, .lead) { grid-column: 1 / -1; }
+  .settings-content .model-profile-list { margin: 0; position: sticky; top: 24px; }
+  .settings-content .model-profile-heading, .settings-content .model-profile-row { flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 1050px) {
+  .web-workbench { grid-template-columns: 176px minmax(0, 1fr); }
+  .workspace-rail { padding: 24px 12px; }
+  .workspace-main { padding: 0 20px; }
+  .web-workspace .dashboard-layout-bar { align-items: flex-start; flex-direction: column; }
+  html[data-app=agent][data-theme] .web-workspace .dashboard-grid { grid-template-columns: minmax(0, 1fr) minmax(230px, .8fr); gap: 14px; }
+  .web-workspace .topbar .hub-link { display: none; }
+  .web-workspace .school-form-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  html[data-app=agent][data-theme] :is(.web-workspace, .settings-shell, .account-shell, .profile-shell) .topbar { padding: 14px 18px; gap: 10px; }
+  html[data-app=agent][data-theme] .web-workspace .topbar { display: grid; grid-template-columns: 34px minmax(0, 1fr); }
+  html[data-app=agent][data-theme] .web-workspace .topbar-actions { grid-column: 1 / -1; width: 100%; margin: 0; gap: 12px; justify-content: flex-end; flex-wrap: nowrap; }
+  .web-workspace .topbar > div:nth-child(2) > span { display: none; }
+  .web-workspace .topbar-actions .account-button { padding: 8px 10px; }
+  .web-workspace .topbar-more summary { font-size: 12px; }
+  .web-workbench { display: block; }
+  .workspace-rail { position: static; padding: 12px 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .workspace-rail nav { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+  .workspace-rail nav button { flex: 0 0 auto; padding: 10px 14px; min-height: 44px; }
+  .workspace-rail nav button > span:last-child { display: none; }
+  .workspace-destinations { display: flex; gap: 28px; padding: 14px 0 2px; margin: 0; border: 0; }
+  .workspace-destinations .study-icon { width: 20px; }
+  .workspace-destinations small, .workspace-storage { display: none; }
+  .workspace-main { padding: 0 18px; }
+  html[data-app=agent][data-theme] .web-workspace .dashboard-layout-bar { padding: 26px 0 20px; gap: 16px; }
+  html[data-app=agent][data-theme] .web-workspace .dashboard-grid { grid-template-columns: minmax(0, 1fr); }
+  .web-workspace .dashboard-widget.full { grid-column: auto; }
+  html[data-app=agent][data-theme] .web-workspace .dashboard-widget > section { padding: 22px; }
+  .web-workspace .welcome-card { min-height: 230px; }
+  .web-workspace .dashboard-widget[data-widget-id=countdown] { padding: 14px 0; }
+  .web-workspace :is(.knowledge-heading, .task-board-header, .review-period-heading) { flex-wrap: wrap; gap: 14px; }
+  .web-workspace :is(.agent-composer, .rag-composer) { grid-template-columns: minmax(0, 1fr); }
+  .web-workspace .conversation-toolbar { flex-wrap: wrap; }
+  .web-workspace .conversation-toolbar label { flex-basis: 100%; }
+  .web-workspace .assistant-heading { flex-wrap: wrap; }
+  html[data-app=agent][data-theme] .web-workspace .school-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .web-workspace .school-wide { grid-column: auto; }
+  .auth-intro { min-height: 300px; padding: 32px 26px; }
+  .auth-intro h1 { font-size: 32px; }
+  html[data-app=agent][data-theme] .account-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .account-stats > div { padding: 14px; }
+  .account-stats strong { font-size: 25px; }
+}

@@ -1,0 +1,44 @@
+/* 有研在先 · approved reference artwork implementation */
+html[data-app] body { isolation: isolate; }
+html[data-app] body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url('/ui-art/study-landscape.png') center / cover no-repeat; opacity: .34; filter: brightness(var(--art-brightness, 1)); }
+html[data-theme=night] body::before { opacity: .2; }
+html[data-app] .brand-mark { object-fit: cover; border-radius: 10px; }
+html[data-app] .home-calendar-scene { container-type: inline-size; width: min(100%, 520px); max-width: 100%; margin: 0 auto; padding: 0; min-height: 0; aspect-ratio: 1; overflow: hidden; }
+html[data-app] .home-calendar-scene::before { background: url('/ui-art/calendar-scene-v2.png') center / 100% 100% no-repeat; opacity: 1; filter: brightness(var(--art-brightness, 1)); border-radius: 4px; }
+html[data-app][data-theme] .home-calendar-scene .device-countdown { position: absolute; top: 29%; left: 19%; width: 62%; height: 49%; aspect-ratio: auto; display: block; background: transparent !important; border: 0; box-shadow: none; border-radius: 0; animation: none; transform: none; }
+html[data-app] .home-calendar-scene .calendar-top { display: none; }
+html[data-app][data-theme] .home-calendar-scene .calendar-body { position: absolute; inset: 0; display: block; min-height: 0; padding: 0; }
+html[data-app][data-theme] .home-calendar-scene .calendar-body > span:first-child { position: absolute; top: 2%; left: 0; width: 100%; font-family: 'Songti SC', 'Noto Serif CJK SC', serif; font-size: clamp(13px, 4cqw, 21px); line-height: 1.35; white-space: nowrap; }
+html[data-app][data-theme] .home-calendar-scene .calendar-body strong { position: absolute; top: 20%; left: 0; width: 100%; font-size: clamp(60px, 25cqw, 126px); line-height: 1; color: var(--ink); }
+html[data-app][data-theme] .home-calendar-scene .calendar-body strong.calendar-long { font-size: clamp(42px, 17cqw, 86px); }
+html[data-app][data-theme] .home-calendar-scene .calendar-body strong i { font-size: clamp(16px, 4.5cqw, 24px); }
+html[data-app][data-theme] .home-calendar-scene .calendar-exam-date { position: absolute; top: 73%; left: 0; width: 100%; margin: 0; font-family: 'Songti SC', serif; font-size: clamp(12px, 3.4cqw, 18px); line-height: 1.35; color: var(--ink); white-space: nowrap; }
+html[data-app][data-theme] .home-calendar-scene .calendar-bottom { position: absolute; top: 88%; left: 2%; width: 96%; min-height: 0; max-height: 12%; overflow: hidden; padding: 0; margin: 0; border: 0; font-size: clamp(10px, 2.6cqw, 13px); font-weight: 400; line-height: 1.25; color: var(--ink); }
+.calendar-motto { position: absolute; top: 1%; right: 5%; margin: 0; font-family: 'Kaiti SC', 'STKaiti', serif; color: #344c3c; font-size: clamp(13px, 4cqw, 20px); }
+html[data-theme=night] .calendar-motto { color: var(--ink); }
+html[data-app] .agent-paper { background: var(--paper); isolation: isolate; }
+html[data-app] .agent-paper::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/ui-art/study-landscape.png') center / cover no-repeat; opacity: .23; pointer-events: none; filter: brightness(var(--art-brightness, 1)); }
+html[data-app] .device-agent-message { position: relative; border-radius: 14px; }
+html[data-app] .device-agent-message.assistant { margin-right: 16px; }
+html[data-app] .device-agent-message.user { margin-left: 40px; }
+html[data-app] .device-agent-message > strong { display: flex; align-items: center; gap: 8px; }
+html[data-app] .device-agent-message.assistant > strong::before { content: ''; width: 28px; height: 28px; border-radius: 50%; background: url('/app-icon.png') center / cover; flex: none; }
+.message-time { display: block; margin-top: 8px; font-size: 11px; line-height: 1.5; font-weight: 400; color: var(--muted, #5e6b5e); font-variant-numeric: tabular-nums; }
+.user .message-time { text-align: right; }
+html[data-app=study] .subject-home { background: transparent; }
+html[data-app=study] .subject-home .home-hero h1 { font-family: 'Songti SC', 'Noto Serif CJK SC', serif; }
+html[data-app=mistake] main > header { position: relative; min-height: 170px; background: url('/ui-art/study-landscape.png') right top / auto 350px no-repeat; padding: 18px; border-radius: 12px; }
+html[data-app=mistake][data-theme=night] main > header { background-image: none; }
+@media (min-width: 800px) {
+  html[data-app] .home-content { width: min(100%, 1120px); max-width: 1120px; grid-template-columns: minmax(0, 520px) minmax(0, 480px); gap: 28px 72px; justify-content: center; align-items: center; }
+  html[data-app] .home-calendar-scene { margin: 24px 0 0; }
+  html[data-app] .home-learning { padding: 0; }
+}
+html[data-app][data-theme] .home-learning .device-apps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; overflow: visible; background: transparent; }
+html[data-app][data-theme] .home-learning .device-apps :is(a, button) { min-height: 96px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+html[data-app][data-theme] .home-learning .device-apps :is(a, button):last-child { border-bottom: 1px solid var(--line); }
+@media (max-width: 760px) {
+  html[data-app] .home-calendar-scene { width: calc(100% + 36px); max-width: none; margin-left: -18px; }
+  html[data-app] .home-learning { padding-top: 22px; }
+  html[data-app] .home-learning h2 { margin-top: 10px; }
+}
